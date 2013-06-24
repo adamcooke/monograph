@@ -1,6 +1,6 @@
 module Monograph
   class Export
-    
+
     class AlreadyExists < StandardError; end
     
     def initialize(book)
@@ -72,6 +72,19 @@ module Monograph
         dir = File.dirname(full_path)
         FileUtils.mkdir_p(dir)
         File.open(full_path, 'w') { |f| f.write(content) }
+      end
+    end
+    
+    # Create a PDF of this document
+    def pdf(path)
+      raise AlreadyExists, "Export path already exists at #{path}" if File.exist?(path)
+      export_path = "/tmp/monograph-pdf-export"
+      save(export_path, true)
+      chapter_files = @book.chapters.map { |c| c.permalink + ".html" }
+      if system("cd #{export_path} && #{@book.config['prince_path'] || 'prince'} index.html contents.html #{chapter_files.join(' ')} -o #{path}")
+        path
+      else
+        false
       end
     end
   end

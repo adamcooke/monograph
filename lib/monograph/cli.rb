@@ -28,5 +28,18 @@ module Monograph
       book
     end
     
+    # Export a book to PDF
+    def pdf(destination = nil, source = nil)
+      source = Dir.pwd if source.nil?
+      raise Error, "You must specify a desintiation" if destination.nil?
+      book = Book.new(source)
+      if book.export.pdf(File.expand_path(destination))
+        puts "PDF exported to #{destination}"
+        system("open #{destination}")
+      else
+        raise Error, "PDF could not be exported. Do you have prince installed?"
+      end
+    end
+    
   end
 end

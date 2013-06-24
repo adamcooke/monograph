@@ -29,7 +29,7 @@ module Monograph
     end
     
     def title
-      @title ||= raw =~ /\A\# ([a-z0-9 ]+)$/i ? $1 : 'Unknown'
+      @title ||= raw =~ /\A\# ([a-z0-9 \&\,\(\)]+)$/i ? $1 : 'Unknown'
     end
     
     def template_context

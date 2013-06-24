@@ -4,6 +4,11 @@
   <title><%= page_title %></title>
   <link rel="stylesheet" href="reset.css" type="text/css" />
   <link rel="stylesheet" href="stylesheet.css" type="text/css" />
+  <% if book.config['stylesheets'] %>
+  <% for document in book.config['stylesheets'] %>
+  <link rel="stylesheet" href="<%=document%>" type="text/css" />
+  <% end %>
+  <% end %>
 </head>
 <body>
   <header>

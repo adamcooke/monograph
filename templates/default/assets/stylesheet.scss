@@ -66,6 +66,12 @@ html {
       }
     }
     
+    section.contents {
+      ol.chapters {
+        ol { margin:12px 20px;}
+      }
+    }
+    
     overflow:hidden;
     padding-top:95px;
     background:#fff;
@@ -158,7 +164,10 @@ html {
 
 
 @media print {
-  html { background:#fff; font-size:13px;}
+  html {
+    background:#fff; font-size:13px;
+    a { color:#000; border-bottom:0; text-decoration:underline;}
+  }
   body {
     background:#fff;
     div.inner { width:100%;}

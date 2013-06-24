@@ -1,6 +1,3 @@
 source "https://rubygems.org"
-gem 'redcarpet'
-gem 'pygments.rb'
+gemspec
 gem 'test-unit'
-gem 'rake'
-gem 'sass'

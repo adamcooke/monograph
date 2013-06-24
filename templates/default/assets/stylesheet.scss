@@ -26,7 +26,7 @@ html {
     height:65px;
     div.inner {
       padding-top:40px;
-      p.left { float:left; font-weight:100;}
+      p.left { float:left; font-weight:100;string-set: booktitle content();}
       p.right { float:right; font-weight:100;}
       p { color:#999; }
       p a { font-weight:100; color:inherit; border:0;}
@@ -40,7 +40,7 @@ html {
       color:#fff;
       padding:300px 0 100px 0;
       text-align:center;
-      h1 { font-size:400%;font-weight:100; margin-bottom:0; padding:0;}
+      h1 { font-size:400%;font-weight:100; margin-bottom:0; padding:0; }
       h3 { margin-top:5px; font-size:120%; color:#888; font-weight:100;}
       h3 a { border:0; color:#888; text-decoration:none;}
       p.intro { 
@@ -71,8 +71,8 @@ html {
     background:#fff;
     padding-bottom:45px;
     h1, h2, h3, h4, h5, p, ul, ol, pre, blockquote { margin:20px 0; line-height:1.7;}
-    h1 {  font-size:260%; font-weight:100; background:#000; margin-top:0;color:#fff; padding:25px; text-align:center; margin-bottom:30px;}
-    h2 { font-size:180%; border-bottom:1px solid #000; padding-bottom:2px;}
+    h1 { font-size:260%; font-weight:100; string-set: sectionheading content(); background:#000; margin-top:0;color:#fff; padding:25px; text-align:center; margin-bottom:30px;}
+    h2 { font-size:220%;  page-break-before:always; string-set: sectionheading content()}
     h3 { font-size:150%;}
     h4 { font-size:120%;}
     h5 { font-size:100%;}
@@ -86,6 +86,7 @@ html {
       font-size:90%;
       line-height:1.4;
       padding:15px;
+      page-break-inside: avoid;
       border:1px solid #ccc;
     }
     
@@ -127,20 +128,16 @@ html {
       border:1px solid #aed2e1;
       padding:15px;
       color:#00769d;
-      background:url(images/icon-info.svg) #e7f8ff no-repeat 15px 15px;
-      background-size:20px;
+      background:#e7f8ff;
       font-size:90%;
-      padding-left:46px;
     }
     
     p.warning {
       border:1px solid #dedfb2;
       padding:15px;
       color:#f17d00;
-      background:url(images/icon-warning.svg) #ffffeb no-repeat 15px 15px;
-      background-size:20px;
+      background:#ffffeb;
       font-size:90%;
-      padding-left:46px;
     }
 
   }
@@ -157,4 +154,61 @@ html {
       p.right { float:right; }
     }
   }
+}
+
+
+@media print {
+  html { background:#fff; font-size:13px;}
+  body {
+    background:#fff;
+    div.inner { width:100%;}
+    section.content {  padding-top:0;}
+    header, footer { display:none;}
+    section.content section.cover p.start a { visibility:hidden;}
+    section.content section.cover { height:100%;}
+  }
+}
+
+@page {
+  size: A4;
+  margin:80pt 80pt 80pt 80pt;
+  @top {
+    font-family:'Proxima Nova', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size:11px;
+    border-bottom:1px solid #000;
+    padding-bottom:6px;
+    vertical-align:bottom;
+    margin-top:0;
+    margin-bottom:15px;
+  }
+  @top-left {
+    font-family:'Proxima Nova', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size:11px;
+    vertical-align:bottom;
+    border-bottom:1px solid #000;
+    padding-bottom:6px;
+    content:counter(page);
+    margin-bottom:15px;
+  }
+  @top-right {
+    font-family:'Proxima Nova', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size:11px;
+    vertical-align:bottom;
+    border-bottom:1px solid #000;
+    padding-bottom:6px;
+    content:string(sectionheading);
+    margin-bottom:15px;
+  }
+  
+  
+  @bottom-right {
+    font-family:'Proxima Nova', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size:11px;
+    border-top:1px solid #000;
+    padding-top:6px;
+    vertical-align:top;
+    margin-top:0;
+    content:string(booktitle);
+  }
+  
 }

@@ -1,4 +1,6 @@
 module Monograph
+  # The BookTemplateContext is used whenever a non-chapter page (cover, contents) is to be 
+  # rendered within the template.
   class BookTemplateContext < TemplateContext
     
     attr_reader :book

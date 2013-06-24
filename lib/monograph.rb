@@ -12,6 +12,7 @@ require 'monograph/template_context'
 require 'monograph/chapter_template_context'
 require 'monograph/book_template_context'
 require 'monograph/markdown_renderer'
+require 'monograph/cli'
 
 module Monograph
   

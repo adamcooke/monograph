@@ -1,4 +1,5 @@
 module Monograph
+  # The ChapterTemplateContext is used whenever a chapter is to be rendered within the template.
   class ChapterTemplateContext < TemplateContext
     
     attr_reader :chapter

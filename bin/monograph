@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+$:.unshift(File.expand_path('../../lib', __FILE__))
+require 'monograph'
+
+if ARGV.first.nil?
+  puts "usage: monograph [command]"
+  exit 1
+end
+
+cli = Monograph::CLI.new
+begin
+  cli.send(*ARGV)
+rescue NoMethodError => e
+  puts "Invalid command '#{ARGV.first}'"
+  exit 1
+rescue Monograph::CLI::Error => e
+  puts "\e[31m#{e.message}\e[0m"
+  exit 1
+end

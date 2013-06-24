@@ -1,4 +1,6 @@
 module Monograph
+  # Template contexts are used to provide ERB templates with access to various methods.
+  # Each type of context must inherit from TemplateContext.
   class TemplateContext
     
     def book

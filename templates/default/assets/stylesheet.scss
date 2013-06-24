@@ -84,6 +84,7 @@ html {
     h5 { font-size:100%;}
     ul, ol { margin-left:35px;}
     ul li { list-style:disc;}
+    ul li p, ol li p { margin:0;}
         
     pre {
       background:#efefef;
@@ -110,6 +111,7 @@ html {
       display:block;
       &.left { float:left; margin-right:20px; margin-bottom:20px;}
       &.right { float:right; margin-left:20px; margin-bottom:20px;}
+      &.rightup { float:right; margin-top:-80px; margin-bottom:15px; margin-left:15px;}
       &.captioned {
         border:1px solid #ccc;
         text-align:center;

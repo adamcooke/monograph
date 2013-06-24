@@ -1,32 +1,19 @@
 module Monograph
   class TemplateContext
     
-    def initialize(chapter)
-      @chapter = chapter
+    def book
     end
     
-    def book_title
-      @chapter.book.title
+    # This title will be displayed in the <title> attribute on the page.
+    def page_title
     end
     
-    def chapter_title
-      @chapter.title
+    # This must return either nil or an object which responds to 'permalink' and 'title'.    
+    def previous_page
     end
     
-    def chapters
-      @chapter.book.chapters
-    end
-    
-    def next_chapter
-      @chapter.book.chapters.select { |c| c.number == @chapter.number + 1}.first
-    end
-    
-    def previous_chapter
-      @chapter.book.chapters.select { |c| c.number == @chapter.number - 1}.first
-    end
-    
-    def content
-      @chapter.html
+    # This must return either nil or an object which responds to 'permalink' and 'title'.
+    def next_page
     end
     
     def get_binding

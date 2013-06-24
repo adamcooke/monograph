@@ -18,11 +18,14 @@ module Monograph
     end
     
     def raw
-      @raw ||= File.read(File.join(@path))
+      @raw ||= File.open(File.join(@path), 'rb', &:read)
     end
     
     def html
-      @html ||= Kramdown::Document.new(self.raw).to_html
+      @html ||= begin
+        rc = Redcarpet::Markdown.new(MarkdownRenderer.new(:with_toc_data => true), :fenced_code_blocks => true)
+        rc.render(self.raw)
+      end
     end
     
     def title
@@ -30,7 +33,15 @@ module Monograph
     end
     
     def template_context
-      @template_context ||= TemplateContext.new(self)
+      @template_context ||= ChapterTemplateContext.new(self)
+    end
+    
+    def sections(level = 2)
+      items = self.html.scan(/<h#{level} id=\"([a-z0-9\-\_]+)\">(.*?)<\/h#{level}>/m)
+      items.inject({}) do |hash, match|
+        hash[match[0]] = match[1]
+        hash
+      end
     end
     
   end

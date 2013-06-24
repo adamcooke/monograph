@@ -1,12 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    kramdown (1.0.2)
     posix-spawn (0.3.6)
     pygments.rb (0.5.0)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
     rake (10.0.4)
+    redcarpet (2.2.2)
+    sass (3.2.9)
     test-unit (2.5.5)
     yajl-ruby (1.1.0)
 
@@ -14,7 +15,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  kramdown
   pygments.rb
   rake
+  redcarpet
+  sass
   test-unit

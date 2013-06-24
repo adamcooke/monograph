@@ -1,4 +1,160 @@
-body {
-  font-family:Arial, sans-serif;
-  h1 { color:red; }
+html {
+  font-family:'Proxima Nova', 'Helvetica Neue', 'Arial', sans-serif;
+  font-size:15px;
+  color:#000;
+  margin:0;
+  background:#efefef;
+  
+  a { color:#298EBE; font-weight:600; text-decoration:none; border-bottom:1px solid #298EBE}
+  
+  body {
+    margin:0;
+  }
+  
+  div.inner {
+    width:800px;
+    margin:auto;
+  }
+  
+  header {
+    position:fixed;
+    top:0;
+    background:#efefef;
+    border-bottom:1px solid #ccc;
+    width:100%;
+    padding-bottom:15px;
+    height:65px;
+    div.inner {
+      padding-top:40px;
+      p.left { float:left; font-weight:100;}
+      p.right { float:right; font-weight:100;}
+      p { color:#999; }
+      p a { font-weight:100; color:inherit; border:0;}
+    }
+  }
+  
+  section.content {
+    section.cover {
+      background:url(images/icon.svg) #000 no-repeat center 130px;;
+      background-size:103px;
+      color:#fff;
+      padding:300px 0 100px 0;
+      text-align:center;
+      h1 { font-size:400%;font-weight:100; margin-bottom:0; padding:0;}
+      h3 { margin-top:5px; font-size:120%; color:#888; font-weight:100;}
+      h3 a { border:0; color:#888; text-decoration:none;}
+      p.intro { 
+        padding:0 20%;
+        margin-top:60px;
+        line-height:1.5;
+        font-style:italic;
+        font-size:120%;
+      }
+      p.start {
+        margin-top:120px;
+        a { 
+          border-radius:5px;
+          background:#76c21b;
+
+          padding:7px 20px 5px 20px;
+          border-bottom:3px solid #588d19;
+          font-size:120%;
+          font-weight:600;
+          text-decoration:none;
+          color:#fff;
+        }
+      }
+    }
+    
+    overflow:hidden;
+    padding-top:95px;
+    background:#fff;
+    padding-bottom:45px;
+    h1, h2, h3, h4, h5, p, ul, ol, pre, blockquote { margin:20px 0; line-height:1.7;}
+    h1 {  font-size:260%; font-weight:100; background:#000; margin-top:0;color:#fff; padding:25px; text-align:center; margin-bottom:30px;}
+    h2 { font-size:180%; border-bottom:1px solid #000; padding-bottom:2px;}
+    h3 { font-size:150%;}
+    h4 { font-size:120%;}
+    h5 { font-size:100%;}
+    ul, ol { margin-left:35px;}
+    ul li { list-style:disc;}
+        
+    pre {
+      background:#efefef;
+      white-space:pre;
+      font-family:'Consolas', Monaco, 'Courier New', fixed;
+      font-size:90%;
+      line-height:1.4;
+      padding:15px;
+      border:1px solid #ccc;
+    }
+    
+    p code, li code {
+      background:#efefef;
+      white-space:pre;
+      font-family:'Consolas', Monaco, 'Courier New', fixed;
+      font-size:90%;
+      line-height:1.4;
+      padding:2px;
+      border:1px solid #ccc;
+    }
+    
+    p span.imgcontainer {
+      display:block;
+      &.left { float:left; margin-right:20px; margin-bottom:20px;}
+      &.right { float:right; margin-left:20px; margin-bottom:20px;}
+      &.captioned {
+        border:1px solid #ccc;
+        text-align:center;
+        span.image {
+          background:#fff;
+          text-align:center;
+          padding:15px 0;
+          display:block;
+        }
+        span.caption { display:block;background:#efefef; color:#999; padding:6px;}
+      }
+    }
+    
+    blockquote {
+      border-left:3px solid #000;
+      padding-left:15px;
+      margin-left:30px;
+      font-style:italic;
+    }
+    
+    p.note {
+      border:1px solid #aed2e1;
+      padding:15px;
+      color:#00769d;
+      background:url(images/icon-info.svg) #e7f8ff no-repeat 15px 15px;
+      background-size:20px;
+      font-size:90%;
+      padding-left:46px;
+    }
+    
+    p.warning {
+      border:1px solid #dedfb2;
+      padding:15px;
+      color:#f17d00;
+      background:url(images/icon-warning.svg) #ffffeb no-repeat 15px 15px;
+      background-size:20px;
+      font-size:90%;
+      padding-left:46px;
+    }
+
+  }
+  
+  footer {
+    border-top:1px solid #ccc;
+    padding:15px 0;
+    div.inner {
+      padding-top:15px;
+      font-size:90%;
+      padding-bottom:15px;
+      overflow:hidden;
+      p.left { float:left; }
+      p.right { float:right; }
+    }
+  }
 }

@@ -1,11 +1,33 @@
 <!DOCTYPE>
 <html>
 <head>
-  <title><%= chapter_title %> - <%= book_title %></title>
+  <title><%= page_title %></title>
+  <link rel="stylesheet" href="reset.css" type="text/css" />
+  <link rel="stylesheet" href="stylesheet.css" type="text/css" />
 </head>
 <body>
-  <p><%= book_title%> - <%= chapter_title %></p>
-  <hr />
-  <%= content %>
+  <header>
+    <div class='inner'>
+      <p class='left'><a href='contents.html'><%= book.title %></a></p>
+      <%if respond_to?(:chapter)%><p class='right'><%= chapter.title %></p><%end%>
+    </div>
+  </header>
+  <section class='content <%=respond_to?(:chapter) ? 'chapter' + chapter.number.to_s : ''%>'>
+    <div class='inner'>
+      <%= content %>
+    </div>
+  </section>
+  <footer>
+    <div class='inner'>
+      <nav class='chapters'>
+        <% if previous_page %>
+        <p class='left'><a href='<%=previous_page.permalink%>.html'>&larr; <%=previous_page.title%></a></p>
+        <% end %>
+        <% if next_page %>
+        <p class='right'><a href='<%=next_page.permalink%>.html'><%=next_page.title%> &rarr;</a></p>
+        <% end %>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

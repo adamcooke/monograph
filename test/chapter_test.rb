@@ -24,4 +24,11 @@ class ChapterTest < Test::Unit::TestCase
     assert @chapter.html =~ /<p>Lorem\s/
   end
   
+  def test_that_chapters_have_sections
+    assert @book.chapters[1].sections.is_a?(Hash)
+    assert @book.chapters[1].sections['a-secondary-heading-for-this-page'] = 'A secondary heading for this page'
+    assert @book.chapters[1].sections['another-secondary-heading'] = 'Another secondary heading'
+    assert @book.chapters[1].sections['a-final-secondary-heading'] = 'A final secondary heading'
+  end
+  
 end

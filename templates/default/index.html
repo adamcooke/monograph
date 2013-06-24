@@ -1,0 +1,11 @@
+<section class='cover'>
+  <h1><%= book.title %></h1>
+  <h3 class='author'>by <a href='mailto:<%=book.config['author']['email']%>'><%= book.config['author']['name'] %></a></h3>
+  <% if book.config['description'] %>
+  <p class='intro'><%= book.config['description']%></p>
+  <% end %>
+  
+  <p class='start'>
+    <a href='contents.html'>Start reading</a>
+  </p>
+</section>

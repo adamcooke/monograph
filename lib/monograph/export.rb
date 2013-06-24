@@ -1,6 +1,8 @@
 module Monograph
   class Export
     
+    class AlreadyExists < StandardError; end
+    
     def initialize(book)
       @book = book
     end
@@ -10,11 +12,22 @@ module Monograph
     def html_files
       @html ||= begin
         erb = ERB.new(@book.template)
-        @book.chapters.inject({}) do |hash, chapter|
-          context = TemplateContext.new(chapter)
-          hash["#{chapter.permalink}.html"] = erb.result(context.get_binding)
+        hash = {}
+        
+        # export the chapters
+        @book.chapters.inject(hash) do |hash, chapter|
+          hash["#{chapter.permalink}.html"] = erb.result(chapter.template_context.get_binding)
           hash
         end
+        
+        # export other ancillary pages
+        ['index.html', 'contents.html'].each do |page|
+          context = BookTemplateContext.new(@book, page)
+          page_erb = ERB.new(erb.result(context.get_binding))
+          hash[page] = page_erb.result(context.get_binding)
+        end
+        
+        hash
       end
     end
     
@@ -32,7 +45,12 @@ module Monograph
         search_paths.each do |search_path|
           Dir[search_path].inject(hash) do |hash, path|
             if File.file?(path)
-              content = File.read(path)
+              content = File.open(path, 'rb', &:read)
+              case path.split('.').last
+              when 'scss'
+                path.gsub!(/.scss\z/, '.css')
+                content = Sass::Engine.new(content, :syntax => :scss).render
+              end
               hash[path.gsub(/\A.*\/assets\//, '')] = content
             end
             hash
@@ -42,5 +60,19 @@ module Monograph
       end
     end
     
+    # Actually run the export to the local file system. This method accepts a path and
+    # an optional boolean for forcing the creation.
+    def save(path, force = false)
+      raise AlreadyExists, "Export path already exists at #{path}" if File.exist?(path) && !force
+      FileUtils.rm_rf(path) if File.exist?(path) && force
+      FileUtils.mkdir_p(path)
+      html_files.each { |filename, content| File.open(File.join(path, filename), 'wb') { |f| f.write(content) }}
+      assets.each do |filename, content|
+        full_path = File.join(path, filename)
+        dir = File.dirname(full_path)
+        FileUtils.mkdir_p(dir)
+        File.open(full_path, 'w') { |f| f.write(content) }
+      end
+    end
   end
 end

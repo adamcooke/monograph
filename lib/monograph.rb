@@ -1,13 +1,17 @@
-require 'kramdown'
+require 'redcarpet'
 require 'pygments'
 require 'yaml'
 require 'erb'
+require 'sass'
 
 require 'monograph/version'
 require 'monograph/book'
 require 'monograph/chapter'
 require 'monograph/export'
 require 'monograph/template_context'
+require 'monograph/chapter_template_context'
+require 'monograph/book_template_context'
+require 'monograph/markdown_renderer'
 
 module Monograph
   

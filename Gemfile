@@ -1,5 +1,6 @@
 source "https://rubygems.org"
-gem 'kramdown'
+gem 'redcarpet'
 gem 'pygments.rb'
 gem 'test-unit'
 gem 'rake'
+gem 'sass'

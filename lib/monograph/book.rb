@@ -31,15 +31,17 @@ module Monograph
       File.join(Monograph.root, 'templates', builtin_template)
     end
     
-    def template
-      @template ||= begin
-        template_path = File.join(@path, 'template.html')
-        if File.exist?(template_path)
-          File.read(template_path)
-        else
-          File.read(File.join(builtin_template_path, 'template.html'))
-        end
+    def template_file(name)
+      template_path = File.join(@path, name)
+      if File.exist?(template_path)
+        File.read(template_path)
+      else
+        File.read(File.join(builtin_template_path, name))
       end
+    end
+    
+    def template
+      @template ||= template_file('template.html')
     end
     
     def export
